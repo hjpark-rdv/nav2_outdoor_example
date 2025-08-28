@@ -12,7 +12,7 @@ slam_toolbox:
 
     # --- 핵심 설정: TF 충돌 방지 ---
     # robot_localization이 map -> odom TF를 제공하므로, slam_toolbox는 발행하지 않도록 설정합니다.
-    # map_to_odom_publish_period: 0.0
+    map_to_odom_publish_period: 0.0
 
     # --- 지도 설정 ---
     mode: "mapping" # 항상 매핑 모드로 실행 (Localization 모드로 전환 안 함)
