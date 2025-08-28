@@ -30,13 +30,19 @@ def generate_launch_description():
     navigation = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(os.path.join(pkg_share, 'launch/navigation.launch.py'))
     )
-
+# --- SLAM 런치 파일 포함시키기 (아래 코드 추가) ---
+    slam = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(os.path.join(pkg_share, 'launch/slam.launch.py')),
+        # use_sim_time 파라미터를 slam.launch.py에 전달
+        launch_arguments={'use_sim_time': 'true'}.items(),
+    )
     return LaunchDescription(
         [
             simulation,
             visualization,
             localization,
             navigation,
+            slam,
         ]
     )
 

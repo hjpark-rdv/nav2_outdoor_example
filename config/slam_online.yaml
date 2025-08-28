@@ -1,0 +1,19 @@
+slam_toolbox:
+  ros__parameters:
+    # --- 기본 설정 ---
+    solver_plugin: "slam_toolbox::LoopClosure"
+    odom_frame: "odom"
+    map_frame: "map"
+    base_frame: "base_footprint"
+    scan_topic: "/scan"
+    use_scan_matching: true
+    loop_closure_minimum_cluster_size: 10
+    map_update_interval: 1.0 # 1초마다 지도 업데이트
+
+    # --- 핵심 설정: TF 충돌 방지 ---
+    # robot_localization이 map -> odom TF를 제공하므로, slam_toolbox는 발행하지 않도록 설정합니다.
+    map_to_odom_publish_period: 0.0
+
+    # --- 지도 설정 ---
+    mode: "mapping" # 항상 매핑 모드로 실행 (Localization 모드로 전환 안 함)
+    map_start_at_robot_origin: true # 로봇의 현재 위치에서 지도 그리기를 시작

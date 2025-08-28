@@ -4,6 +4,7 @@
   <xacro:include filename="$(find nav2_outdoor_example)/urdf/materials.xacro" />
   <xacro:include filename="$(find nav2_outdoor_example)/urdf/robot.gazebo" />
   <xacro:include filename="$(find nav2_outdoor_example)/urdf/wheel.xacro" />
+  <xacro:include filename="$(find linorobot2_description)/urdf/sensors/generic_laser.urdf.xacro" />
 
   <link name="base_link">
     <inertial>
@@ -82,4 +83,10 @@
     </inertial>
   </link>
 
+  <xacro:generic_laser>
+    <origin xyz="0 0 0.3" rpy="0 0 0"/>
+  </xacro:generic_laser>
+  
+
+  
 </robot>
