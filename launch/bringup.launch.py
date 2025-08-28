@@ -16,19 +16,23 @@ def generate_launch_description():
     pkg_share = get_package_share_directory('nav2_outdoor_example')
 
     simulation = IncludeLaunchDescription(
-        PythonLaunchDescriptionSource(os.path.join(pkg_share, 'launch/simulation.launch.py'))
+        PythonLaunchDescriptionSource(os.path.join(pkg_share, 'launch/simulation.launch.py')),
+        launch_arguments={'use_sim_time': 'true'}.items() # 이 부분 추가
     )
 
     visualization = IncludeLaunchDescription(
-        PythonLaunchDescriptionSource(os.path.join(pkg_share, 'launch/visualization.launch.py'))
+        PythonLaunchDescriptionSource(os.path.join(pkg_share, 'launch/visualization.launch.py')),
+        launch_arguments={'use_sim_time': 'true'}.items() # 이 부분 추가
     )
 
     localization = IncludeLaunchDescription(
-        PythonLaunchDescriptionSource(os.path.join(pkg_share, 'launch/localization.launch.py'))
+        PythonLaunchDescriptionSource(os.path.join(pkg_share, 'launch/localization.launch.py')),
+        launch_arguments={'use_sim_time': 'true'}.items() # 이 부분 추가
     )
 
     navigation = IncludeLaunchDescription(
-        PythonLaunchDescriptionSource(os.path.join(pkg_share, 'launch/navigation.launch.py'))
+        PythonLaunchDescriptionSource(os.path.join(pkg_share, 'launch/navigation.launch.py')),
+        launch_arguments={'use_sim_time': 'true'}.items() # 이 부분 추가
     )
 # --- SLAM 런치 파일 포함시키기 (아래 코드 추가) ---
     slam = IncludeLaunchDescription(

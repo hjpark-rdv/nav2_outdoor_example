@@ -6,21 +6,26 @@ from ament_index_python.packages import get_package_share_directory
 
 from launch import LaunchDescription
 from launch_ros.actions import Node
-
+from launch.actions import DeclareLaunchArgument
 
 def generate_launch_description():
 
     pkg_share = get_package_share_directory('nav2_outdoor_example')
 
   
-    map_transform_node = Node(
-        package='tf2_ros',
-        executable='static_transform_publisher',
-        name='map_transform',
-        output='screen',
-        arguments = "--x -1 --y 0 --z 0 --roll 0 --pitch 0 --yaw 0 --frame-id map --child-frame-id odom".split(' '),
-        )
+    # map_transform_node = Node(
+    #     package='tf2_ros',
+    #     executable='static_transform_publisher',
+    #     name='map_transform',
+    #     output='screen',
+    #     arguments = "--x -1 --y 0 --z 0 --roll 0 --pitch 0 --yaw 0 --frame-id map --child-frame-id odom".split(' '),
+    #     )
     
+    declare_use_sim_time_argument = DeclareLaunchArgument(
+        'use_sim_time',
+        default_value='true',
+        description='Use simulation/Gazebo clock')
+
     navsat_transform_node = Node(
         package='robot_localization',
         executable='navsat_transform_node',
@@ -47,17 +52,18 @@ def generate_launch_description():
         name='ukf_node',
         output='screen',
         respawn=True,
-        parameters=[os.path.join(pkg_share, 'config/ukf.yaml')],
+        parameters=[os.path.join(pkg_share, 'config/ukf.yaml'), {"use_simtime": True}],
         remappings=[
-            ('/odometry/filtered', '/odom'),
+            ('/odometry/filtered', '/odom'),            
         ]
         )
 
     return LaunchDescription(
         [
+            declare_use_sim_time_argument, # 선언 추가
             ukf_localization_node,
             navsat_transform_node,
-            map_transform_node,
+            # map_transform_node,
         ]
     )
 

@@ -30,25 +30,25 @@ def generate_launch_description():
         convert_types=True)
 
 
-    # Start map server
-    lifecycle_nodes = ['map_server']
-    map_server_node = Node(
-                package='nav2_map_server',
-                executable='map_server',
-                name='map_server',
-                output='screen',
-                parameters=[configured_params],
-                arguments=['--ros-args', '--log-level', 'info'])
+    # # Start map server
+    # lifecycle_nodes = ['map_server']
+    # map_server_node = Node(
+    #             package='nav2_map_server',
+    #             executable='map_server',
+    #             name='map_server',
+    #             output='screen',
+    #             parameters=[configured_params],
+    #             arguments=['--ros-args', '--log-level', 'info'])
 
-    map_server_lifecycle_node = Node(
-                package='nav2_lifecycle_manager',
-                executable='lifecycle_manager',
-                name='lifecycle_manager_localization',
-                output='screen',
-                arguments=['--ros-args', '--log-level', 'info'],
-                parameters=[{'use_sim_time': True},
-                            {'autostart': True},
-                            {'node_names': lifecycle_nodes}])
+    # map_server_lifecycle_node = Node(
+    #             package='nav2_lifecycle_manager',
+    #             executable='lifecycle_manager',
+    #             name='lifecycle_manager_localization',
+    #             output='screen',
+    #             arguments=['--ros-args', '--log-level', 'info'],
+    #             parameters=[{'use_sim_time': True},
+    #                         {'autostart': True},
+    #                         {'node_names': lifecycle_nodes}])
 
     pkg_nav2_bringup = get_package_share_directory('nav2_bringup')
 
@@ -62,8 +62,8 @@ def generate_launch_description():
 
     return LaunchDescription(
         [
-            map_server_node,
-            map_server_lifecycle_node,
+            # map_server_node,
+            # map_server_lifecycle_node,
             nav2_bringup_launch
         ]
     )
