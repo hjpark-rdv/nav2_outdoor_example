@@ -29,7 +29,7 @@
     </gazebo>
 
     <gazebo>
-        <plugin filename="ign_ros2_control-system" name="ign_ros2_control::IgnitionROS2ControlPlugin">
+        <plugin filename="gz_ros2_control-system" name="gz_ros2_control::GazeboSimROS2ControlPlugin">
             <parameters>$(find nav2_outdoor_example)/config/diff_drive_controller_velocity.yaml</parameters>
             <ros>
                 <remapping>/diff_drive_base_controller/cmd_vel_unstamped:=/cmd_vel</remapping>
@@ -38,9 +38,9 @@
     </gazebo>
 
 
-    <ros2_control name="IgnitionSystem" type="system">
+    <ros2_control name="GazeboSimSystem" type="system">
         <hardware>
-            <plugin>ign_ros2_control/IgnitionSystem</plugin>
+            <plugin>gz_ros2_control/GazeboSimSystem</plugin>
         </hardware>
         <joint name="front_left_joint">
             <command_interface name="velocity">
