@@ -4,7 +4,9 @@
   <xacro:include filename="$(find nav2_outdoor_example)/urdf/materials.xacro" />
   <xacro:include filename="$(find nav2_outdoor_example)/urdf/robot.gazebo" />
   <xacro:include filename="$(find nav2_outdoor_example)/urdf/wheel.xacro" />
+  <xacro:include filename="$(find nav2_outdoor_example)/urdf/lidar_mid360_sensor.urdf.xacro" />
 
+  
   <link name="base_link">
     <inertial>
       <origin xyz="0 0 0" rpy="0 0 0"/>
@@ -81,5 +83,17 @@
       <inertia ixx="0.1" ixy="0.0" ixz="0.0" iyy="0.1" iyz="0.0" izz="0.1"/>
     </inertial>
   </link>
+
+  <xacro:lidar3d_sensor>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </xacro:lidar3d_sensor>
+  
+  <gazebo>
+    <plugin
+      filename="gz-sim-sensors-system"
+      name="gz::sim::systems::Sensors">
+      <render_engine>ogre2</render_engine>
+    </plugin>
+  </gazebo>
 
 </robot>
