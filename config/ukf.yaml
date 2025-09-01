@@ -66,6 +66,21 @@ ukf_node:
 
     imu0_remove_gravitational_acceleration: true
 
+    # 새로 추가: FAST-LIO LiDAR SLAM odom
+    odom1: /Odometry  # FAST-LIO 토픽 (필요시 remap: e.g., /fast_lio/odom -> /Odometry)
+    odom1_config: [true, true, false,  # X, Y (강점), Z (2D 모드라 false로 제한)
+                   true, true, true,   # roll, pitch, yaw (LiDAR 강점)
+                   true, true, false,  # X_vel, Y_vel (강점), Z_vel
+                   false, false, false, # roll_vel, pitch_vel, yaw_vel (IMU가 커버)
+                   false, false, false] # accel (IMU가 커버)
+    odom1_queue_size: 10
+    odom1_nodelay: false
+    odom1_differential: true  # 상대적 변화만 사용 (드리프트 방지, GPS가 절대 위치 보정)
+    odom1_relative: true      # 상대적 모드: 이전 측정과의 차이 사용
+    odom1_pose_rejection_threshold: 5.0  # 이상치 rejection (GPS와 동기화)
+    odom1_twist_rejection_threshold: 1.0
+
+
     use_control: false #/cmd_vel
     stamped_control: false
     control_timeout: 0.2
