@@ -6,7 +6,7 @@
         <sensor name="GazeboIMU" type="imu">
             <always_on>1</always_on>
             <update_rate>25.0</update_rate>
-            <visualize>false</visualize>
+            <visualize>true</visualize>
             <topic>imu</topic>
             <frame_id>imu_link</frame_id>
             <ignition_frame_id>imu_link</ignition_frame_id>
@@ -21,15 +21,15 @@
     <gazebo reference="gnss_link">
         <sensor name="GazeboNavSat" type="navsat">
             <always_on>1</always_on>
-            <update_rate>5.0</update_rate>
-            <visualize>false</visualize>
+            <update_rate>25.0</update_rate>
+            <visualize>true</visualize>
             <topic>gps/fix</topic>
             <ignition_frame_id>gnss_link</ignition_frame_id>
         </sensor>
     </gazebo>
 
     <gazebo>
-        <plugin filename="ign_ros2_control-system" name="ign_ros2_control::IgnitionROS2ControlPlugin">
+        <plugin filename="gz_ros2_control-system" name="gz_ros2_control::GazeboSimROS2ControlPlugin">
             <parameters>$(find nav2_outdoor_example)/config/diff_drive_controller_velocity.yaml</parameters>
             <ros>
                 <remapping>/diff_drive_base_controller/cmd_vel_unstamped:=/cmd_vel</remapping>
@@ -38,11 +38,11 @@
     </gazebo>
 
 
-    <ros2_control name="IgnitionSystem" type="system">
+    <ros2_control name="GazeboSimSystem" type="system">
         <hardware>
-            <plugin>ign_ros2_control/IgnitionSystem</plugin>
+            <plugin>gz_ros2_control/GazeboSimSystem</plugin>
         </hardware>
-        <joint name="front_left_joint">
+        <joint name="front_left_wheel_joint">
             <command_interface name="velocity">
                 <param name="min">-1</param>
                 <param name="max">1</param>
@@ -50,7 +50,7 @@
             <state_interface name="position"/>
             <state_interface name="velocity"/>
         </joint>
-        <joint name="front_right_joint">
+        <joint name="front_right_wheel_joint">
             <command_interface name="velocity">
                 <param name="min">-1</param>
                 <param name="max">1</param>
@@ -58,7 +58,7 @@
             <state_interface name="position"/>
             <state_interface name="velocity"/>
         </joint>
-        <joint name="rear_left_joint">
+        <joint name="rear_left_wheel_joint">
             <command_interface name="velocity">
                 <param name="min">-1</param>
                 <param name="max">1</param>
@@ -66,7 +66,7 @@
             <state_interface name="position"/>
             <state_interface name="velocity"/>
         </joint>
-        <joint name="rear_right_joint">
+        <joint name="rear_right_wheel_joint">
             <command_interface name="velocity">
                 <param name="min">-1</param>
                 <param name="max">1</param>
@@ -85,25 +85,25 @@
         <gravity>true</gravity>
     </gazebo>
 
-    <gazebo reference="front_left">
+    <gazebo reference="front_left_wheel_link">
         <mu1>0.2</mu1>
         <mu2>0.2</mu2>
         <self_collide>true</self_collide>
     </gazebo>
 
-    <gazebo reference="rear_left">
+    <gazebo reference="rear_left_wheel_link">
         <mu1>0.2</mu1>
         <mu2>0.2</mu2>
         <self_collide>true</self_collide>
     </gazebo>
 
-    <gazebo reference="front_right">
+    <gazebo reference="front_right_wheel_link">
         <mu1>0.2</mu1>
         <mu2>0.2</mu2>
         <self_collide>true</self_collide>
     </gazebo>
 
-    <gazebo reference="rear_right">
+    <gazebo reference="rear_right_wheel_link">
         <mu1>0.2</mu1>
         <mu2>0.2</mu2>
         <self_collide>true</self_collide>

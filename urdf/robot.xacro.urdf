@@ -3,38 +3,73 @@
 
   <xacro:include filename="$(find nav2_outdoor_example)/urdf/materials.xacro" />
   <xacro:include filename="$(find nav2_outdoor_example)/urdf/robot.gazebo" />
-  <xacro:include filename="$(find nav2_outdoor_example)/urdf/wheel.xacro" />
+  <!-- <xacro:include filename="$(find nav2_outdoor_example)/urdf/wheel.xacro" /> -->
+  <xacro:include filename="$(find nav2_outdoor_example)/urdf/base.urdf.xacro" />
+  <xacro:include filename="$(find nav2_outdoor_example)/urdf/wheel.urdf.xacro" />
   <xacro:include filename="$(find nav2_outdoor_example)/urdf/lidar_mid360_sensor.urdf.xacro" />
 
-  
-  <link name="base_link">
-    <inertial>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
-      <mass value="97.36517446475621"/>
-      <inertia ixx="8.084237" iyy="15.065847" izz="23.090003" ixy="-0.0" iyz="-0.0" ixz="0.0"/>
-    </inertial>
-    <visual>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
-      <geometry>
-        <mesh filename="file://$(find nav2_outdoor_example)/urdf/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
-      </geometry>
-      <material name="blue"/>
-    </visual>
-    <collision>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
-      <geometry>
-        <mesh filename="file://$(find nav2_outdoor_example)/urdf/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
-      </geometry>
-    </collision>
-  </link>
+  <xacro:property name="base_length" value="0.445" />
+  <xacro:property name="base_width" value="0.200" />
+  <xacro:property name="base_height" value="0.129" />
+  <xacro:property name="base_mass" value="10" />
 
-  <xacro:wheel name="front_right" xyz="0.35 -0.233285 0.0" rpy="0 0 2.07079698039" direction="1" />
-  <xacro:wheel name="rear_right" xyz="-0.35 -0.233285 0.0" rpy="0 0 1.07079566641" direction="1" />
-  <xacro:wheel name="front_left" xyz="0.35 0.233285 0.0" rpy="0 0 -2.07079698039" direction="-1" />
-  <xacro:wheel name="rear_left" xyz="-0.35 0.233285 0.0" rpy="0 0 -1.07079566641" direction="-1" />
+  <xacro:property name="wheel_radius" value="0.07162" />
+  <xacro:property name="wheel_width" value="0.05" />
+  <xacro:property name="wheel_pos_x" value="0.120" />
+  <xacro:property name="wheel_pos_y" value="0.1355" />
+  <xacro:property name="wheel_pos_z" value="-0.04788" />
+  <xacro:property name="wheel_mass" value=".6" />
+  <xacro:property name="wheel_torque" value="20" />
+
+  <xacro:base 
+    length="${base_length}" 
+    width="${base_width}" 
+    height="${base_height}" 
+    mass="${base_mass}"
+    wheel_radius="${wheel_radius}"
+    wheel_pos_z="${wheel_pos_z}"
+  />
+
+  <xacro:wheel 
+    side="front_left"
+    radius="${wheel_radius}" 
+    width="${wheel_width}" 
+    pos_x="${wheel_pos_x}" 
+    pos_y="${wheel_pos_y}" 
+    pos_z="${wheel_pos_z}" 
+    mass="${wheel_mass}"
+  />
+
+  <xacro:wheel 
+    side="front_right"
+    radius="${wheel_radius}" 
+    width="${wheel_width}" 
+    pos_x="${wheel_pos_x}" 
+    pos_y="${-wheel_pos_y}" 
+    pos_z="${wheel_pos_z}" 
+    mass="${wheel_mass}"
+  />
+  <xacro:wheel 
+    side="rear_left"
+    radius="${wheel_radius}" 
+    width="${wheel_width}" 
+    pos_x="${-wheel_pos_x}" 
+    pos_y="${wheel_pos_y}" 
+    pos_z="${wheel_pos_z}" 
+    mass="${wheel_mass}"
+  />
+
+  <xacro:wheel 
+    side="rear_right"
+    radius="${wheel_radius}" 
+    width="${wheel_width}" 
+    pos_x="${-wheel_pos_x}" 
+    pos_y="${-wheel_pos_y}" 
+    pos_z="${wheel_pos_z}" 
+    mass="${wheel_mass}"
+  />
 
   <joint name="imu_joint" type="fixed">
-    <!-- <origin xyz="0 0 0.05" rpy="0.5 1.2 -1.17"/> -->
     <origin xyz="0 0 0" rpy="0 0 0"/>
     <parent link="base_link"/>
     <child link="imu_link"/>
@@ -86,9 +121,9 @@
   </link>
 
   <xacro:lidar3d_sensor>
-    <origin xyz="0 0 0.5" rpy="0 0 0"/>
+      <origin xyz="0 0 0.5" rpy="0 0 0"/>
   </xacro:lidar3d_sensor>
-  
+
   <gazebo>
     <plugin
       filename="gz-sim-sensors-system"
@@ -96,5 +131,5 @@
       <render_engine>ogre2</render_engine>
     </plugin>
   </gazebo>
-
+  
 </robot>
