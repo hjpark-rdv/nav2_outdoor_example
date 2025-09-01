@@ -131,5 +131,29 @@
       <render_engine>ogre2</render_engine>
     </plugin>
   </gazebo>
-  
+
+
+  <link name="RGLLidar"/>
+
+  <joint name="RGLLidar_to_base_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="RGLLidar"/>
+     <origin xyz="0 0 0.5" rpy="0 0 0"/>
+  </joint>
+
+  <gazebo reference="RGLLidar">
+    <sensor name="UniqueSensorName" type="custom">
+      <plugin filename="RGLServerPluginInstance" name="rgl::RGLServerPluginInstance">
+        <range>
+            <min>0</min>
+            <max>100</max>
+        </range>
+        <update_rate>10</update_rate>
+        <update_on_paused_sim>false</update_on_paused_sim>
+        <topic>rgl_lidar</topic>
+        <frame>RGLLidar</frame>
+        <pattern_preset>Livox Mid360</pattern_preset>
+      </plugin>
+    </sensor>
+  </gazebo>
 </robot>

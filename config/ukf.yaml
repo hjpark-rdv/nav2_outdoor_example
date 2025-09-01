@@ -8,7 +8,7 @@ ukf_node:
     frequency: 25.0
     sensor_timeout: 1.0
 
-    two_d_mode: true
+    two_d_mode: true #false로 3D 전환 (하지만 야외 네비라 2D 충분).
 
     transform_time_offset: 0.0
 

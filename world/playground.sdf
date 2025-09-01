@@ -36,6 +36,9 @@
     </plugin>
     <plugin filename="ignition-gazebo-imu-system" name="ignition::gazebo::systems::Imu">
     </plugin>
+    <!-- <plugin name='rgl::RGLServerPluginManager' filename='RGLServerPluginManager'>
+      <do_ignore_entities_in_lidar_link>true</do_ignore_entities_in_lidar_link>
+    </plugin> -->
 
     <spherical_coordinates>
       <surface_model>EARTH_WGS84</surface_model>

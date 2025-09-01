@@ -25,8 +25,17 @@
             <visualize>true</visualize>
             <topic>gps/fix</topic>
             <ignition_frame_id>gnss_link</ignition_frame_id>
+            <navsat>
+                <noise>
+                    <type>gaussian</type>
+                    <mean>0.0</mean>
+                    <stddev>10.001</stddev>
+                </noise>
+            </navsat>
         </sensor>
     </gazebo>
+
+
 
     <gazebo>
         <plugin filename="gz_ros2_control-system" name="gz_ros2_control::GazeboSimROS2ControlPlugin">

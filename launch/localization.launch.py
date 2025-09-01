@@ -31,7 +31,7 @@ def generate_launch_description():
             "yaw_offset": 0.0,
             "zero_altitude": True,
             "use_odometry_yaw": False,
-            "wait_for_datum": False,
+            "wait_for_datum": False, #GPS 음영 시 LiDAR가 /odom을 유지하므로, navsat_transform의 "wait_for_datum: False"를 유지. GPS 복귀 시 자동 재동기화.
             "publish_filtered_gps": False,
             "broadcast_utm_transform": False,
             "use_simtime": True,
