@@ -50,7 +50,7 @@ def generate_launch_description():
         executable='parameter_bridge',
         arguments=['/clock@rosgraph_msgs/msg/Clock[ignition.msgs.Clock',
                    '/imu@sensor_msgs/msg/Imu[gz.msgs.IMU',
-                #    '/gps/fix@sensor_msgs/msg/NavSatFix[gz.msgs.NavSat',                   
+                   '/gps/fix@sensor_msgs/msg/NavSatFix[gz.msgs.NavSat',                   
                    "/livox/points@sensor_msgs/msg/PointCloud2[gz.msgs.PointCloudPacked",
                    "/livox@sensor_msgs/msg/LaserScan[gz.msgs.LaserScan",
                    ],
