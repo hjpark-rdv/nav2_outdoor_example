@@ -34,7 +34,8 @@
   <xacro:wheel name="rear_left" xyz="-0.35 0.233285 0.0" rpy="0 0 -1.07079566641" direction="-1" />
 
   <joint name="imu_joint" type="fixed">
-    <origin xyz="0 0 0.05" rpy="0.5 1.2 -1.17"/>
+    <!-- <origin xyz="0 0 0.05" rpy="0.5 1.2 -1.17"/> -->
+    <origin xyz="0 0 0" rpy="0 0 0"/>
     <parent link="base_link"/>
     <child link="imu_link"/>
   </joint>
@@ -85,7 +86,7 @@
   </link>
 
   <xacro:lidar3d_sensor>
-    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <origin xyz="0 0 0.5" rpy="0 0 0"/>
   </xacro:lidar3d_sensor>
   
   <gazebo>

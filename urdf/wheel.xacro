@@ -9,16 +9,22 @@
         <inertia ixx="0.212208" iyy="0.290082" izz="0.17327" ixy="0.0" iyz="0.0" ixz="-0.0"/>
       </inertial>
       <visual>
-        <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
-        <geometry>
+        <origin xyz="0.0 0.0 0.0" rpy="0.2 1.5707963 0"/>
+        <!-- <geometry>
           <mesh filename="file://$(find nav2_outdoor_example)/urdf/meshes/wheel.stl" scale="0.001 0.001 0.001"/>
+        </geometry> -->
+        <geometry>
+          <cylinder radius="0.3" length="0.15"/>
         </geometry>
         <material name="silver"/>
       </visual>
       <collision>
-        <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
-        <geometry>
+        <origin xyz="0.0 0.0 0.0" rpy="0.2 1.5707963 0"/>
+        <!-- <geometry>
           <mesh filename="file://$(find nav2_outdoor_example)/urdf/meshes/wheel.stl" scale="0.001 0.001 0.001"/>
+        </geometry> -->
+        <geometry>
+          <cylinder radius="0.3" length="0.15"/>
         </geometry>
       </collision>
     </link>

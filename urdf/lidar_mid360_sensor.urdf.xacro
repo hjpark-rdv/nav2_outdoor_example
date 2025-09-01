@@ -63,15 +63,15 @@
           <scan>
             <horizontal>
               <samples>360</samples>
-              <resolution>1</resolution>
+              <resolution>0.1</resolution>
               <min_angle>-3.14159</min_angle>
               <max_angle>3.14159</max_angle>
             </horizontal>
             <vertical>
-              <samples>16</samples>
+              <samples>32</samples>
               <resolution>1</resolution>
-              <min_angle>-0.261</min_angle>
-              <max_angle>0.261</max_angle>
+              <min_angle>0.0</min_angle>
+              <max_angle>0.761</max_angle>
             </vertical>
           </scan>
           <range>
@@ -82,7 +82,7 @@
           <noise>
             <type>gaussian</type>
             <mean>0.0</mean>
-            <stddev>0.01</stddev>
+            <stddev>0.001</stddev>
           </noise>
         </lidar>
       </sensor>
